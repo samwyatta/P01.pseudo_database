@@ -1,0 +1,246 @@
+[gd_scene load_steps=3 format=3 uid="uid://jqv8x0xlen4i"]
+
+[ext_resource type="Script" path="res://database.gd" id="1_5seot"]
+
+[sub_resource type="Theme" id="Theme_i1jkp"]
+Button/colors/icon_focus_color = Color(1, 1, 0, 0.596078)
+Button/colors/icon_hover_color = Color(1, 1, 1, 0)
+
+[node name="DatabaseUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5seot")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainerLeft" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="ButtonSearch" type="TextEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "search..."
+scroll_fit_content_height = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerLeft"]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 2
+
+[node name="FileListContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerLeft/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_i1jkp")
+
+[node name="VBoxContainerRight" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight"]
+layout_mode = 2
+
+[node name="FilterSearchTextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "search by..."
+scroll_fit_content_height = true
+
+[node name="FilterTypeOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+selected = 0
+item_count = 3
+popup/item_0/text = "tags"
+popup/item_1/text = "project"
+popup/item_1/id = 1
+popup/item_2/text = "author"
+popup/item_2/id = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="FilterButtonContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 4
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/ScrollContainer/FilterButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/ScrollContainer/FilterButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/ScrollContainer/FilterButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+
+[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/ScrollContainer/FilterButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+
+[node name="Button5" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/ScrollContainer/FilterButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+
+[node name="Button6" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/ScrollContainer/FilterButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+
+[node name="Button7" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/ScrollContainer/FilterButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+
+[node name="Button8" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/ScrollContainer/FilterButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+
+[node name="Button9" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/ScrollContainer/FilterButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+
+[node name="Button10" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/ScrollContainer/FilterButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+
+[node name="Button11" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/ScrollContainer/FilterButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+
+[node name="Button12" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/ScrollContainer/FilterButtonContainer"]
+custom_minimum_size = Vector2(130, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+toggle_mode = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SaveEditContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AuthorTagEditor" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/SaveEditContainer"]
+layout_mode = 2
+
+[node name="Author" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/SaveEditContainer/AuthorTagEditor"]
+layout_mode = 2
+text = "Author:"
+
+[node name="AuthorTextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer/MarginContainer/SaveEditContainer/AuthorTagEditor"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 35)
+layout_mode = 2
+size_flags_horizontal = 0
+placeholder_text = "author name"
+
+[node name="Tags" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/SaveEditContainer/AuthorTagEditor"]
+layout_mode = 2
+text = "Tags: "
+
+[node name="TagsTextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer/MarginContainer/SaveEditContainer/AuthorTagEditor"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+placeholder_text = "add tags separated by comma (no spaces). i.e. \"apple,yellow_banana,...\""
+wrap_mode = 1
+use_custom_word_separators = true
+custom_word_separators = "_"
+
+[node name="SaveToJSON" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/SaveEditContainer/AuthorTagEditor"]
+custom_minimum_size = Vector2(115.5, 35)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+text = "Save"
+
+[node name="ProjectEditorSaveButton" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/SaveEditContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Project" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/SaveEditContainer/ProjectEditorSaveButton"]
+layout_mode = 2
+text = "Project:"
+
+[node name="ProjectTextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer/MarginContainer/SaveEditContainer/ProjectEditorSaveButton"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+placeholder_text = "project name"
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/SaveEditContainer/ProjectEditorSaveButton"]
+layout_mode = 2
+text = "Description:"
+
+[node name="DescriptionTextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer/MarginContainer/SaveEditContainer/ProjectEditorSaveButton"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+placeholder_text = "description..."
+wrap_mode = 1
+
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerLeft/ButtonSearch" to="." method="_on_button_search_text_changed"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/HBoxContainer/FilterSearchTextEdit" to="." method="_on_filter_search_text_edit_text_changed"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainerRight/HBoxContainer/FilterTypeOptionButton" to="." method="_on_filter_type_option_button_item_selected"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/MarginContainer/SaveEditContainer/AuthorTagEditor/TagsTextEdit" to="." method="_on_tags_text_edit_text_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/SaveEditContainer/AuthorTagEditor/SaveToJSON" to="." method="_on_save_to_json_pressed"]

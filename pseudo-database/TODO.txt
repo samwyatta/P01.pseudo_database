@@ -1,0 +1,6 @@
+BUG_FIXES:
+	tags don't update after edits (probably has to do with the tags_arrayified dictionary)
+
+Add lable on the bottom to read message when a save is completed.
+
+Make an icon for this project
