@@ -3,15 +3,16 @@ extends Control
 var main_directory
 var save_directory
 var save_directory_string: String = r"D:\TestDir2"
+var main_directory_string: String = ""
+
+var saved_directories: Dictionary
+var local_save_path: String = r"res://pdbsave.json"
 
 var author_dict: Dictionary = {}
-
 var project_dict: Dictionary = {}
-
 var tags_dict: Dictionary = {}
 var tags_dict_arrayified: Dictionary = {}
 var tags_bad_characters: String= r" !@#$%^&*()-+=<>?/\|{}[];':1234567890`~"
-
 var description_dict: Dictionary = {}
 
 var active_string: String
@@ -25,6 +26,9 @@ var file_buttons: Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	saved_directories["test2"] = r"D:\TestDir2"
+	saved_directories["test1"] = r"D:\TestDir1"
+	load_saved_directories()
 	main_directory = DirAccess.get_files_at(r"D:\TestDir1")
 	save_directory = DirAccess.get_files_at(r"D:\TestDir2") 
 	for file in main_directory:
@@ -65,10 +69,11 @@ func _ready() -> void:
 		tags_dict_arrayified[key] = active_dictionary[key].split(",")
 	active_dictionary = tags_dict_arrayified
 	make_filter_buttons(active_dictionary)
+	connect_menu_buttons_to_signals()
+	print(saved_directories)
 
 func _on_button_search_text_changed() -> void:
 	for button in file_buttons:
-		print(button.text)
 		if %ButtonSearch.text.to_upper() in button.text.to_upper():
 			button.show()
 		else: button.hide()
@@ -97,9 +102,7 @@ func update_dictionaries(key) -> void:
 	project_dict[key] = %ProjectTextEdit.text
 	tags_dict[key] = %TagsTextEdit.text
 	description_dict[key] = %DescriptionTextEdit.text
-	tags_dict_arrayified[key] = %DescriptionTextEdit.text
-	print(key)
-	print(tags_dict_arrayified[key])
+	tags_dict_arrayified[key] = tags_dict[key].split(",")
 
 func save_dictionaries_to_json() -> void:
 	var author_file = FileAccess.open(r"D:\TestDir2\author.json",FileAccess.WRITE)
@@ -218,4 +221,76 @@ func filter_file_buttons_by_tag_buttons() -> void:
 	#The idea here is to look at an array made of the selected tab_buttons.text
 	#and compare that to the active dictionary for each key.  If the key has
 	#every value in that array-> file_button.show() else-> file_button.hide()
-	
+
+func _on_new_directory_window_close_requested() -> void:
+	%NewDirectoryLineEdit.text = ""
+	%NewDirectoryWindow.hide()
+
+func make_new_directory_window_visible() -> void:
+	%NewDirectoryWindow.show()
+
+func make_saved_directories_window_visible() -> void:
+	%SavedDirectoriesWindow.show()
+
+func populate_saved_directory_window() -> void:
+	for key in saved_directories:
+		var button = Button.new()
+		button.text = str(key)
+		button.set_theme(file_button_theme)
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		var label = Label.new()
+		label.text = saved_directories[key] 
+		%NicknameButtonsVBoxContainer.add_child(button)
+		%FilePathLabelsVBoxContainer.add_child(label)
+
+func file_menu(id):
+	match(id):
+		0:
+			make_new_directory_window_visible()
+		1:
+			make_saved_directories_window_visible()
+			populate_saved_directory_window()
+
+func connect_menu_buttons_to_signals() -> void:
+	var popup = %FileButton.get_popup()
+	popup.id_pressed.connect(file_menu)
+
+func _on_new_directory_save_button_pressed() -> void:
+	if %NewDirectoryLineEdit.text in saved_directories:
+		%NewDirectoryErrorLabel.text = "This directory has already been saved to this program.  Try opening it from 'File > Change Directory"
+		return
+	update_saved_directories()
+
+func update_saved_directories():
+	var key: String
+	if %NewDirectoryNicknameLineEdit.text == "":
+		key = %NewDirectoryLineEdit.text
+	else:
+		key = %NewDirectoryNicknameLineEdit.text
+	if key == "":
+		%NewDirectoryErrorLabel.text = "ERROR: required fields left blank"
+		return
+	if key in saved_directories:
+		%NewDirectoryErrorLabel.text = "ERROR: the entered nickname is not unique"
+		return
+	saved_directories[key] = %NewDirectoryLineEdit.text
+	print(saved_directories)
+	#var file = FileAccess.open(local_save_path, FileAccess.WRITE)
+	#file.store_var(saved_directories)
+	#file.close()
+	#save_directory_string = %NewDirectoryLineEdit.text
+	#DirAccess.make_dir_recursive_absolute(save_directory_string+r"\data")
+	#FileAccess.open(save_directory_string+r"\data\author.json",FileAccess.WRITE)
+	#FileAccess.open(save_directory_string+r"\data\project.json",FileAccess.WRITE)
+	#FileAccess.open(save_directory_string+r"\data\tags.json",FileAccess.WRITE)
+	#FileAccess.open(save_directory_string+r"\data\description.json",FileAccess.WRITE)
+
+func load_saved_directories():
+	# Need to reformat this for JSONs.
+	pass
+	#var file = FileAccess.open(local_save_path, FileAccess.READ)
+	#saved_directories = file.get_var()
+	#file.close()
+
+func _on_saved_directories_window_close_requested() -> void:
+	%SavedDirectoriesWindow.hide()

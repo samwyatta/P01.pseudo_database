@@ -15,9 +15,9 @@ run/main_scene="res://database_ui.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[autoload]
+[display]
 
-Tags="*res://tags.gd"
+window/size/viewport_height=700
 
 [rendering]
 
