@@ -5,7 +5,6 @@ var save_directory
 var save_directory_string: String = r"D:\TestDir2"
 var main_directory_string: String = ""
 
-var saved_directories: Dictionary
 var local_save_path: String = r"res://pdbsave.json"
 
 var author_dict: Dictionary = {}
@@ -14,6 +13,10 @@ var tags_dict: Dictionary = {}
 var tags_dict_arrayified: Dictionary = {}
 var tags_bad_characters: String= r" !@#$%^&*()-+=<>?/\|{}[];':1234567890`~"
 var description_dict: Dictionary = {}
+
+#Variables for the saving and changing directory logic:
+var saved_directories: Dictionary
+var selected_directory_button_string: String
 
 var active_string: String
 var active_dictionary: Dictionary
@@ -232,12 +235,24 @@ func make_new_directory_window_visible() -> void:
 func make_saved_directories_window_visible() -> void:
 	%SavedDirectoriesWindow.show()
 
+func set_selected_directory(button_text) -> void:
+	var buttons_array = %NicknameButtonsVBoxContainer.get_children()
+	for button in buttons_array:
+		if button.text == button_text:
+			continue
+		else:
+			button.set_pressed(false)
+	selected_directory_button_string = saved_directories[button_text]
+	print(selected_directory_button_string)
+
 func populate_saved_directory_window() -> void:
 	for key in saved_directories:
 		var button = Button.new()
 		button.text = str(key)
 		button.set_theme(file_button_theme)
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		button.toggle_mode = true
+		button.button_down.connect(set_selected_directory.bind(button.text))
 		var label = Label.new()
 		label.text = saved_directories[key] 
 		%NicknameButtonsVBoxContainer.add_child(button)
@@ -294,3 +309,19 @@ func load_saved_directories():
 
 func _on_saved_directories_window_close_requested() -> void:
 	%SavedDirectoriesWindow.hide()
+	selected_directory_button_string = ""
+	print(selected_directory_button_string)
+	var buttons = %NicknameButtonsVBoxContainer.get_children()
+	for button in buttons:
+		button.queue_free()
+	var labels = %FilePathLabelsVBoxContainer.get_children()
+	for label in labels:
+		label.queue_free()
+
+
+func _on_open_saved_directory_button_pressed() -> void:
+	if selected_directory_button_string == "":
+		print("no directory selected")
+		return
+	main_directory = selected_directory_button_string
+	print(main_directory)

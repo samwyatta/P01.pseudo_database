@@ -255,6 +255,7 @@ unique_name_in_owner = true
 title = "Add Directory"
 initial_position = 4
 size = Vector2i(650, 225)
+visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="NewDirectoryWindow"]
 anchors_preset = 10
@@ -362,3 +363,4 @@ text = "Delete"
 [connection signal="close_requested" from="NewDirectoryWindow" to="." method="_on_new_directory_window_close_requested"]
 [connection signal="pressed" from="NewDirectoryWindow/MarginContainer/VBoxContainer/NewDirectorySaveButton" to="." method="_on_new_directory_save_button_pressed"]
 [connection signal="close_requested" from="SavedDirectoriesWindow" to="." method="_on_saved_directories_window_close_requested"]
+[connection signal="pressed" from="SavedDirectoriesWindow/MarginContainer/VBoxContainer/OpenDeleteButtonsHBoxContainer/OpenSavedDirectoryButton" to="." method="_on_open_saved_directory_button_pressed"]
